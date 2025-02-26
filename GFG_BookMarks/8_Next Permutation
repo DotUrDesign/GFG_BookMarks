@@ -1,0 +1,30 @@
+
+QUESTION : Next Permutation
+
+class Solution {
+  public:
+    void nextPermutation(vector<int>& arr) {
+        int n = arr.size();
+        int id1 = -1;
+        for(int i=n-2;i>=0;i--) {
+            if(arr[i] < arr[i+1]) {
+                id1 = i;
+                break;
+            }
+        }
+        if(id1 == -1) {
+            reverse(arr.begin(), arr.end());
+            return;
+        }
+        int id2 = -1;
+        for(int i=n-1;i>id1;i--) {
+            if(arr[i] > arr[id1]) {
+                id2 = i;
+                break;
+            }
+        }
+        swap(arr[id1], arr[id2]);
+        reverse(arr.begin()+id1+1, arr.end());
+        return;
+    }
+};

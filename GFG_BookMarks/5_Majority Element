@@ -1,0 +1,30 @@
+
+QUESTION : Majority Element
+
+class Solution {
+  public:
+    int majorityElement(vector<int>& arr) {
+        int n = arr.size();
+        int count = 0;
+        int ele = arr[0];
+        for(int i=0;i<n;i++) {
+            if(ele == arr[i])
+                count++;
+            else {
+                if(count == 0) {
+                    count = 1;
+                    ele = arr[i];
+                } else
+                    count--;
+            }
+        }
+
+        count = 0;
+        for(auto it : arr) {
+            if(it == ele)
+                count++;
+        }
+
+        return count > n/2 ? ele : -1;
+    }
+};
